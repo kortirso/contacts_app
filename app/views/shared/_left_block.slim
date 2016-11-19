@@ -5,6 +5,9 @@
         = link_to 'Выйти', destroy_user_session_path, method: :delete, class: 'button', id: 'destroy'
     .contacts_block.block
         p.head Список контактов
+        div
+            = link_to 'List of contacts', contacts_path, class: 'button'
+            = link_to 'New contact', new_contact_path, class: 'button'
         - @contacts.each do |contact|
             .contact
-                p= contact.name
+                = contact.name

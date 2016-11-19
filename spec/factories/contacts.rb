@@ -6,5 +6,13 @@ FactoryGirl.define do
         address 'Address'
         company 'Big Company'
         association :user
+
+        trait :empty_name do
+            name ''
+        end
+
+        trait :empty_email do
+            email ''
+        end
     end
 end

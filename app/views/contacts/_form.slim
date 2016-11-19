@@ -1,0 +1,7 @@
+p= simple_form_for @contact, as: :contact, url: contacts_path do |f|
+    = f.input :name, label: false, placeholder: 'Name'
+    = f.input :email, label: false, placeholder: 'Email'
+    = f.input :phone, label: false, placeholder: 'Phone'
+    = f.input :address, label: false, placeholder: 'Address'
+    = f.input :company, label: false, placeholder: 'Company'
+    = f.button :submit, 'Add Contact', class: 'button', id: 'add_contact'
