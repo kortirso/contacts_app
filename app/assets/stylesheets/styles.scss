@@ -38,3 +38,63 @@ body {
         padding: 10px;
     }
 }
+
+#contacts_page {
+    height: 100%;
+    .left_block {
+        border-right: 1px solid #CCC;
+        height: 100%;
+        float: left;
+        width: 20%;
+        header {
+            p, a {
+                margin-bottom: 5px;
+            }
+        }
+        .block {
+            padding: 0 10px;
+            .head {
+                font-weight: 300;
+                margin-bottom: 5px;
+            }
+        }
+        .contacts_block {
+            .contact {
+                margin: 0 -10px 5px;
+                padding: 7px 10px;
+                a {
+                    color: #000;
+                }
+            }
+        }
+        overflow: hidden;
+        overflow-y: scroll;
+        &::-webkit-scrollbar {
+            width: 6px;
+        }
+        &::-webkit-scrollbar-track {
+            -webkit-border-radius: 6px;
+            border-radius: 6px;
+        }
+        &::-webkit-scrollbar-thumb {
+            -webkit-border-radius: 6px;
+            border-radius: 6px;
+            background: rgba(217,217,217,0.8);
+            -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+        }
+    }
+    .right_block {
+        position: relative;
+        height: 100%;
+        width: 80%;
+        margin-left: 20%;
+        padding: 10px;
+        &:before, &:after {
+            content: " ";
+            display: table;
+        }
+        &:after {
+            clear: both;
+        }
+    }
+}

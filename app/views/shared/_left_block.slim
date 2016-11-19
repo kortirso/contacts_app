@@ -1,0 +1,10 @@
+.left_block
+    header.block
+        p#username
+            = current_user.email
+        = link_to 'Выйти', destroy_user_session_path, method: :delete, class: 'button', id: 'destroy'
+    .contacts_block.block
+        p.head Список контактов
+        - @contacts.each do |contact|
+            .contact
+                p= contact.name
