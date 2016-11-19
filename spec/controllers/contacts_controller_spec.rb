@@ -28,6 +28,56 @@ RSpec.describe ContactsController, type: :controller do
         end
     end
 
+    describe 'GET #show' do
+        it 'redirect to welcome page if user not login' do
+            get :show, params: { id: 1 }
+
+            expect(response).to render_template 'welcome/index'
+        end
+
+        context 'When user logged in' do
+            sign_in_user
+            let!(:contacts) { create_list(:contact, 2, user: @current_user) }
+            let!(:another_contact) { create :contact }
+
+            context 'try access his contact' do
+                context 'if contact is exist' do
+                    before { get :show, params: { id: contacts.first.id } }
+
+                    it 'collects an array of user contacts in @contacts' do
+                        expect(assigns(:contacts)).to match_array(contacts)
+                    end
+
+                    it 'and @contacts does not collect another user contact' do
+                        @current_user.contacts.each do |contact|
+                            expect(contact).to_not eq another_contact
+                        end
+                    end
+
+                    it 'and assigns the requested contact to @contact' do
+                        expect(assigns(:contact)).to eq contacts.first
+                    end
+
+                    it 'and renders contact page' do
+                        expect(response).to render_template :show
+                    end
+                end
+
+                it 'render 404 page if contact does not exist' do
+                    get :show, params: { id: 1000 }
+
+                    expect(response).to render_template 'shared/404'
+                end
+            end
+
+            it 'render 404 page if user try access another user contact' do
+                get :show, params: { id: another_contact.id }
+
+                expect(response).to render_template 'shared/404'
+            end
+        end
+    end
+
     describe 'GET #new' do
         it 'redirect to welcome page if user not login' do
             get :index

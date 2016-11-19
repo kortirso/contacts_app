@@ -10,4 +10,4 @@
             = link_to 'New contact', new_contact_path, class: 'button'
         - @contacts.each do |contact|
             .contact
-                = contact.name
+                = link_to contact.name, contact_path(contact.id)

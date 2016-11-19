@@ -1,9 +1,14 @@
 class ContactsController < ApplicationController
     before_action :get_access
     before_action :user_contacts, except: :create
+    before_action :find_contact, only: :show
     
     def index
         
+    end
+
+    def show
+
     end
 
     def new
@@ -23,6 +28,11 @@ class ContactsController < ApplicationController
 
     def user_contacts
         @contacts = current_user.contacts.order(name: :asc)
+    end
+
+    def find_contact
+        @contact = @contacts.find_by(id: params[:id])
+        render_404 unless @contact
     end
 
     def contacts_params

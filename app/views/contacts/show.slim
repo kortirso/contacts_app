@@ -1,0 +1,9 @@
+#contacts_page
+    = render 'shared/left_block'
+    .right_block
+        .container
+            .row
+                h2= "Данные о пользователе - #{@contact.name}"
+                - %w(email phone address company).each do |param|
+                    - unless @contact[param].empty?
+                        p= "#{param.capitalize} - #{@contact[param]}"
