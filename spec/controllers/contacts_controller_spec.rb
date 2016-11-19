@@ -9,7 +9,7 @@ RSpec.describe ContactsController, type: :controller do
         context 'When user logged in' do
             sign_in_user
 
-            it 'redirect to chats page' do
+            it 'redirect to main contacts page' do
                 get :index
 
                 expect(response).to render_template :index
