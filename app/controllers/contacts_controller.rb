@@ -1,6 +1,6 @@
 class ContactsController < ApplicationController
     before_action :get_access
-    before_action :user_contacts, except: :create
+    before_action :user_contacts
     before_action :find_contact, only: :show
     
     def index
