@@ -1,9 +1,9 @@
 p= simple_form_for @contact do |f|
-    = f.input :name, label: false, placeholder: 'Name'
-    = f.input :email, label: false, placeholder: 'Email'
-    = f.input :phone, label: false, placeholder: 'Phone'
-    = f.input :address, label: false, placeholder: 'Address'
-    = f.input :company, label: false, placeholder: 'Company'
-    .input= f.text_field :birthday, label: false, placeholder: 'Birthday', value: @contact.birthday.strftime('%d/%m/%Y')
-    = f.button :submit, 'Save', class: 'button', id: 'add_contact'
+    = f.input :name, label: t('placeholders.name'), placeholder: t('placeholders.name')
+    = f.input :email, label: t('placeholders.email'), placeholder: t('placeholders.email')
+    = f.input :phone, label: t('placeholders.phone'), placeholder: t('placeholders.phone')
+    = f.input :address, label: t('placeholders.address'), placeholder: t('placeholders.address')
+    = f.input :company, label: t('placeholders.company'), placeholder: t('placeholders.company')
+    .input= f.text_field :birthday, label: false, placeholder: t('placeholders.birthday'), value: (@contact.birthday.strftime('%d/%m/%Y') unless @contact.birthday.nil?)
+    = f.button :submit, t('buttons.save'), class: 'button', id: 'add_contact'
     

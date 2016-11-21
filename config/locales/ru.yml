@@ -1,0 +1,27 @@
+ru:
+  buttons:
+    login: 'Вход'
+    signup: 'Регистрация'
+    logout: 'Выход'
+    contacts: 'Список контактов'
+    new: 'Новый контакт'
+    add: 'Добавить контакт'
+    edit: 'Изменить контакт'
+    delete: 'Удалить контакт'
+    save: 'Сохранить контакт'
+  placeholders:
+    email: 'Email'
+    password: 'Пароль'
+    confirm: 'Подтверждение'
+    name: 'Имя'
+    phone: 'Телефон'
+    address: 'Адрес'
+    company: 'Компания'
+    birthday: 'Дата рождения'
+  auth:
+    auth: 'Авторизация'
+    reg: 'Регистрация'
+  text:
+    about_contact: 'Информация о контакте'
+    edit_contact: 'Изменение данных контакта'
+    add_contact: 'Добавление нового контакта'

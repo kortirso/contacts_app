@@ -2,12 +2,12 @@
     header.block
         p#username
             = current_user.email
-        = link_to 'Выйти', destroy_user_session_path, method: :delete, class: 'button', id: 'destroy'
+        = link_to t('buttons.logout'), destroy_user_session_path, method: :delete, class: 'button', id: 'destroy'
     .contacts_block.block
-        p.head Список контактов
+        p.head= t('buttons.contacts')
         div
-            = link_to 'List of contacts', contacts_path, class: 'button'
-            = link_to 'New contact', new_contact_path, class: 'button'
+            = link_to t('buttons.contacts'), contacts_path, class: 'button'
+            = link_to t('buttons.new'), new_contact_path, class: 'button'
         - @contacts.each do |contact|
             .contact
                 = link_to contact.name, contact_path(contact.id)

@@ -15,6 +15,7 @@ gem 'slim'
 gem 'devise'
 gem 'simple_form'
 gem 'dotiw', github: 'radar/dotiw'
+gem 'http_accept_language'
 
 group :development, :test do
     gem 'rspec-rails'

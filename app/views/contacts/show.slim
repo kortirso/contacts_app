@@ -1,11 +1,11 @@
 .container
     .row
-        h2= "Данные о пользователе - #{@contact.name}"
+        h2= "#{t('text.about_contact')} - #{@contact.name}"
         - %w(email phone address company).each do |param|
             - unless @contact[param].empty?
-                p= "#{param.capitalize} - #{@contact[param]}"
+                p= t("placeholders.#{param}") + " - #{@contact[param]}"
         - unless @contact[:birthday].nil?
-            p= "Birthday - #{@contact[:birthday].strftime('%d/%m/%Y')} (#{distance_of_time_in_words(Time.current, @contact[:birthday], only: :years)} old)"
+            p= "#{t('placeholders.birthday')} - #{@contact[:birthday].strftime('%d/%m/%Y')} (#{distance_of_time_in_words(Time.current, @contact[:birthday], only: :years)})"
         p
-            = link_to 'Edit Contact', edit_contact_path(@contact), class: 'button'
-            = link_to 'Delete Contact', @contact, method: :delete, data: { confirm: 'Are you sure?' }, class: 'button'
+            = link_to t('buttons.edit'), edit_contact_path(@contact), class: 'button'
+            = link_to t('buttons.delete'), @contact, method: :delete, data: { confirm: 'Are you sure?' }, class: 'button'

@@ -1,2 +1,28 @@
 en:
-  hello: "Hello world"
+  buttons:
+    login: 'Login'
+    signup: 'SignUp'
+    logout: 'LogOut'
+    contacts: 'List of contacts'
+    new: 'New contact'
+    add: 'Add contact'
+    edit: 'Edit contact'
+    delete: 'Delete contact'
+    save: 'Save contact'
+  placeholders:
+    email: 'Email'
+    password: 'Password'
+    confirm: 'Confirmation'
+    name: 'Name'
+    phone: 'Phone'
+    address: 'Address'
+    company: 'Company'
+    birthday: 'Birthday'
+  auth:
+    auth: 'Authorization'
+    reg: 'Registration'
+  text:
+    about_contact: 'Information about contact'
+    edit_contact: 'Edit contact'
+    add_contact: 'Add new contact'
+    
