@@ -14,6 +14,7 @@ gem 'foundation-rails'
 gem 'slim'
 gem 'devise'
 gem 'simple_form'
+gem 'dotiw', github: 'radar/dotiw'
 
 group :development, :test do
     gem 'rspec-rails'

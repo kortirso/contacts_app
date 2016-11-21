@@ -1,3 +1,11 @@
+GIT
+  remote: git://github.com/radar/dotiw.git
+  revision: 3be9d26046f94f1f1fd735d360226a751dc9b543
+  specs:
+    dotiw (3.1.1)
+      actionpack (>= 3)
+      i18n
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -202,6 +210,7 @@ PLATFORMS
 
 DEPENDENCIES
   devise
+  dotiw!
   factory_girl_rails
   figaro
   foundation-rails

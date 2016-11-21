@@ -4,6 +4,8 @@
         - %w(email phone address company).each do |param|
             - unless @contact[param].empty?
                 p= "#{param.capitalize} - #{@contact[param]}"
+        - unless @contact[:birthday].nil?
+            p= "Birthday - #{@contact[:birthday].strftime('%d/%m/%Y')} (#{distance_of_time_in_words(Time.current, @contact[:birthday], only: :years)} old)"
         p
             = link_to 'Edit Contact', edit_contact_path(@contact), class: 'button'
             = link_to 'Delete Contact', @contact, method: :delete, data: { confirm: 'Are you sure?' }, class: 'button'
