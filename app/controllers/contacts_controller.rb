@@ -1,7 +1,7 @@
 class ContactsController < ApplicationController
     before_action :get_access
     before_action :user_contacts
-    before_action :find_contact, only: :show
+    before_action :find_contact, only: [:show, :edit, :update, :destroy]
     
     def index
         
@@ -22,6 +22,23 @@ class ContactsController < ApplicationController
         else
             render :new
         end
+    end
+
+    def edit
+
+    end
+
+    def update
+        if current_user.check_other_emails(@contact.id, contacts_params[:email]) && @contact.update(contacts_params)
+            redirect_to @contact
+        else
+            render :edit
+        end
+    end
+
+    def destroy
+        @contact.destroy
+        redirect_to contacts_path
     end
 
     private

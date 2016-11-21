@@ -1,9 +1,9 @@
-#contacts_page
-    = render 'shared/left_block'
-    .right_block
-        .container
-            .row
-                h2= "Данные о пользователе - #{@contact.name}"
-                - %w(email phone address company).each do |param|
-                    - unless @contact[param].empty?
-                        p= "#{param.capitalize} - #{@contact[param]}"
+.container
+    .row
+        h2= "Данные о пользователе - #{@contact.name}"
+        - %w(email phone address company).each do |param|
+            - unless @contact[param].empty?
+                p= "#{param.capitalize} - #{@contact[param]}"
+        p
+            = link_to 'Edit Contact', edit_contact_path(@contact), class: 'button'
+            = link_to 'Delete Contact', @contact, method: :delete, data: { confirm: 'Are you sure?' }, class: 'button'
