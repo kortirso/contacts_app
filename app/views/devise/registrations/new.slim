@@ -4,7 +4,8 @@
             h2= t('auth.reg')
             = simple_form_for(User.new, as: :user, url: registration_path(:user)) do |f|
                 .columns.medium-7= f.input :email, required: true, autofocus: true, placeholder: t('placeholders.email'), label: false
-                .columns.medium-7= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @validatable), placeholder: t('placeholders.password'), label: false
+                .columns.medium-7= f.input :password, required: true, placeholder: t('placeholders.password'), label: false
                 .columns.medium-7= f.input :password_confirmation, required: true, placeholder: t('placeholders.confirm'), label: false
                 .clearfix
                 = f.button :submit, t('buttons.signup'), class: 'button', id: 'registration'
+                = render 'shared/socials'

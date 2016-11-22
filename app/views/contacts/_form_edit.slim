@@ -5,5 +5,8 @@ p= simple_form_for @contact do |f|
     = f.input :address, label: t('placeholders.address'), placeholder: t('placeholders.address')
     = f.input :company, label: t('placeholders.company'), placeholder: t('placeholders.company')
     .input= f.text_field :birthday, label: false, placeholder: t('placeholders.birthday'), value: (@contact.birthday.strftime('%d/%m/%Y') unless @contact.birthday.nil?)
-    = f.button :submit, t('buttons.save'), class: 'button', id: 'add_contact'
+    p
+        = f.button :submit, t('buttons.save'), class: 'button', id: 'add_contact'
+        = link_to t('buttons.view'), contact_path(@contact), class: 'button'
+    p= link_to t('buttons.contacts'), contacts_path, class: 'button'
     

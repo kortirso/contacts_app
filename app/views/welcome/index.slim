@@ -12,6 +12,7 @@
                         .small-12.columns= f.input :email, required: true, label: false, placeholder: t('placeholders.email')
                         .small-8.columns= f.input :password, autocomplete: 'off', label: false, placeholder: t('placeholders.password')
                         .small-4.columns= f.button :submit, t('buttons.login'), class: 'button', id: 'authorization'
+                        = render 'shared/socials'
         .small-12.small-6.small-offset-3.medium-4.medium-offset-8.columns
             .block#signup
                 .row

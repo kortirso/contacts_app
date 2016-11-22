@@ -4,6 +4,7 @@
             h2= t('auth.auth')
             = simple_form_for(User.new, as: :user, url: session_path(:user)) do |f|
                 .columns.medium-7= f.input :email, required: true, autofocus: true, placeholder: t('placeholders.email'), label: false
-                .columns.medium-7= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @validatable), placeholder: t('placeholders.password'), label: false
+                .columns.medium-7= f.input :password, required: true, placeholder: t('placeholders.password'), label: false
                 .clearfix
                 = f.button :submit, t('buttons.login'), class: 'button', id: 'authorization'
+                = render 'shared/socials'

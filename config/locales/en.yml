@@ -9,6 +9,7 @@ en:
     edit: 'Edit contact'
     delete: 'Delete contact'
     save: 'Save contact'
+    view: 'View contact'
   placeholders:
     email: 'Email'
     password: 'Password'
@@ -21,8 +22,12 @@ en:
   auth:
     auth: 'Authorization'
     reg: 'Registration'
+    facebook: 'Enter through Facebook'
   text:
     about_contact: 'Information about contact'
     edit_contact: 'Edit contact'
     add_contact: 'Add new contact'
+  index:
+    welcome: 'Welcome!'
+    p: 'Select contact to view information'
     

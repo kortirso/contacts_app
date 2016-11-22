@@ -39,6 +39,7 @@ body {
     }
     .button {
         margin-right: 5px;
+        margin-bottom: 0;
     }
 }
 
@@ -122,4 +123,8 @@ body {
     background-image: url('404.jpg');
     background-position: center;
     background-repeat: no-repeat;
+}
+
+.social {
+    width: 26px;
 }

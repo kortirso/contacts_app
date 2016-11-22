@@ -1,0 +1,3 @@
+.small-12.columns
+    - unless ENV['FACEBOOK_APP_ID'].empty?
+        = link_to image_tag('social-facebook.jpg', class: 'social', alt: t('auth.facebook')), user_facebook_omniauth_authorize_path, title: t('auth.facebook')
