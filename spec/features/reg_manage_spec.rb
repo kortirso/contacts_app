@@ -26,7 +26,7 @@ RSpec.feature 'Registration management', type: :feature do
                     click_button I18n.t('buttons.signup')
                 end
 
-                expect(page).to have_content 'Sign up'
+                expect(page).to have_content I18n.t('auth.reg')
             end
         end
 
@@ -53,7 +53,7 @@ RSpec.feature 'Registration management', type: :feature do
                     click_button I18n.t('buttons.login')
                 end
 
-                expect(page).to have_content 'Sign up'
+                expect(page).to have_content I18n.t('auth.auth')
             end
 
             it 'when he not registered' do
@@ -64,7 +64,7 @@ RSpec.feature 'Registration management', type: :feature do
                     click_button I18n.t('buttons.login')
                 end
 
-                expect(page).to have_content 'Sign up'
+                expect(page).to have_content I18n.t('auth.auth')
             end
         end
     end

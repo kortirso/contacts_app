@@ -9,23 +9,16 @@
                     = simple_form_for(User.new, as: :user, url: session_path(:user)) do |f|
                         .small-12.columns
                             p= t('auth.auth')
-                        .small-12.columns
-                            = f.input :email, required: true, label: false, placeholder: t('placeholders.email')
-                        .small-8.columns
-                            = f.input :password, autocomplete: 'off', label: false, placeholder: t('placeholders.password')
-                        .small-4.columns
-                            = f.button :submit, t('buttons.login'), class: 'button', id: 'authorization'
+                        .small-12.columns= f.input :email, required: true, label: false, placeholder: t('placeholders.email')
+                        .small-8.columns= f.input :password, autocomplete: 'off', label: false, placeholder: t('placeholders.password')
+                        .small-4.columns= f.button :submit, t('buttons.login'), class: 'button', id: 'authorization'
         .small-12.small-6.small-offset-3.medium-4.medium-offset-8.columns
             .block#signup
                 .row
                     = simple_form_for(User.new, as: :user, url: registration_path(:user)) do |f|
                         .small-12.columns
                             p= t('auth.reg')
-                        .small-12.columns
-                            = f.input :email, required: true, label: false, placeholder: t('placeholders.email')
-                        .small-12.columns
-                            = f.input :password, required: true, label: false, placeholder: t('placeholders.password')
-                        .small-12.columns
-                            = f.input :password_confirmation, autocomplete: 'off', required: true, label: false, placeholder: t('placeholders.confirm')
-                        .small-12.small-5.small-offset-7.columns
-                            =  f.button :submit, t('buttons.signup'), class: 'button', id: 'registration'
+                        .small-12.columns= f.input :email, required: true, label: false, placeholder: t('placeholders.email')
+                        .small-12.columns= f.input :password, required: true, label: false, placeholder: t('placeholders.password')
+                        .small-12.columns= f.input :password_confirmation, autocomplete: 'off', required: true, label: false, placeholder: t('placeholders.confirm')
+                        .small-12.small-5.small-offset-7.columns=  f.button :submit, t('buttons.signup'), class: 'button', id: 'registration'
