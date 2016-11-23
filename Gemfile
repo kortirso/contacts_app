@@ -18,6 +18,11 @@ gem 'omniauth-facebook'
 gem 'simple_form'
 gem 'dotiw', github: 'radar/dotiw'
 gem 'http_accept_language'
+gem 'active_model_serializers'
+gem 'doorkeeper', '>= 4.2.0'
+gem 'oj'
+gem 'oj_mimic_json'
+gem 'apipie-rails'
 
 group :development, :test do
     gem 'rspec-rails'
@@ -36,6 +41,7 @@ end
 
 group :test do
     gem 'shoulda-matchers'
+    gem 'json_spec'
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
