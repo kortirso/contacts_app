@@ -4,11 +4,7 @@ class User < ApplicationRecord
     has_many :contacts, dependent: :destroy
     has_many :identities, dependent: :destroy
 
-    def check_contact_email(email)
-        contacts.find_by(email: email).nil?
-    end
-
-    def check_other_emails(id, email)
+    def check_contact_email(id, email)
         contacts.where.not(id: id).find_by(email: email).nil?
     end
 

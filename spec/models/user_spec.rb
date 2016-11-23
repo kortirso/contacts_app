@@ -20,25 +20,26 @@ RSpec.describe User, type: :model do
             let(:email) { 'some_mail@mail.com' }
             let!(:contact) { create :contact }
 
-            it 'should return true if users contacts does not have email of new contact' do
-                expect(contact.user.check_contact_email(email)).to eq true
+            context 'for new contacts' do
+                it 'should return true if users contacts does not have email of new contact' do
+                    expect(contact.user.check_contact_email(nil, email)).to eq true
+                end
+
+                it 'should return false if users contacts have email of new contact' do
+                    expect(contact.user.check_contact_email(nil, contact.email)).to eq false
+                end
             end
 
-            it 'should return false if users contacts have email of new contact' do
-                expect(contact.user.check_contact_email(contact.email)).to eq false
-            end
-        end
+            context 'for existed contacts' do
+                let!(:another_contact) { create :contact, user: contact.user }
 
-        context '.check_contact_email' do
-            let!(:contact) { create :contact }
-            let!(:another_contact) { create :contact, user: contact.user }
+                it 'should return true if users contacts does not have email of current contact' do
+                    expect(contact.user.check_contact_email(contact.id, contact.email)).to eq true
+                end
 
-            it 'should return true if users contacts does not have email of current contact' do
-                expect(contact.user.check_other_emails(contact.id, contact.email)).to eq true
-            end
-
-            it 'should return false if users contacts have email of current contact' do
-                expect(contact.user.check_other_emails(contact.id, another_contact.email)).to eq false
+                it 'should return false if users contacts have email of current contact' do
+                    expect(contact.user.check_contact_email(contact.id, another_contact.email)).to eq false
+                end
             end
         end
     end

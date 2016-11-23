@@ -8,9 +8,6 @@ class Api::V1::ProfilesController < Api::V1::BaseController
     error code: 401, desc: 'Unauthorized'
     example "profile: {'id':8,'email':'testing'}"
     def me
-        data = {
-            profile: UserSerializer.new(current_resource_owner)
-        }
-        render json: data
+        render json: { profile: UserSerializer.new(current_resource_owner) }
     end
 end

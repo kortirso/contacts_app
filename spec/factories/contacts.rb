@@ -5,6 +5,7 @@ FactoryGirl.define do
         phone '555-55-55'
         address 'Address'
         company 'Big Company'
+        birthday '02/08/2000'
         association :user
 
         trait :empty_name do

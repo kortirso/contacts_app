@@ -17,7 +17,7 @@ class ContactsController < ApplicationController
 
     def create
         @contact = Contact.new(contacts_params.merge(user: current_user))
-        if current_user.check_contact_email(@contact.email) && @contact.save
+        if current_user.check_contact_email(nil, @contact.email) && @contact.save
             redirect_to contacts_path
         else
             render :new
@@ -29,7 +29,7 @@ class ContactsController < ApplicationController
     end
 
     def update
-        if current_user.check_other_emails(@contact.id, contacts_params[:email]) && @contact.update(contacts_params)
+        if current_user.check_contact_email(@contact.id, contacts_params[:email]) && @contact.update(contacts_params)
             redirect_to @contact
         else
             render :edit
