@@ -23,6 +23,8 @@ gem 'doorkeeper', '>= 4.2.0'
 gem 'oj'
 gem 'oj_mimic_json'
 gem 'apipie-rails'
+gem 'sprockets-es6'
+gem 'react-rails', '>= 1.9.0'
 
 group :development, :test do
     gem 'rspec-rails'

@@ -1,4 +1,3 @@
-.container
-    .row
-        h2= t('index.welcome')
-        p= t('index.p')
+#contacts_app
+    .row.contacts_inside
+        = react_component('ContactsBox', token: current_user.token)
