@@ -31,6 +31,7 @@ class Contacts extends React.Component {
         return (
             <div className='contacts'>
                 <a href='#' onClick={this._handleAdding.bind(this)} className='button'>Add Contact</a>
+                <a href='/users/sign_out' className='button' data-method='delete'>LogOut</a>
                 {contacts}
             </div>
         );
