@@ -81,6 +81,9 @@ body {
             padding: 0;
             height: 100%;
             box-shadow: 1px 0 5px #000;
+            .button {
+                margin: 10px;
+            }
             .contacts {
                 .contact {
                     padding: 10px 20px;
@@ -127,6 +130,11 @@ body {
             }
             .contact_welcome {
 
+            }
+            .add_contact {
+                input {
+                    width: 400px;
+                }
             }
         }
     }

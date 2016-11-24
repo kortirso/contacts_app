@@ -11,7 +11,7 @@ class Api::V1::ContactsController < Api::V1::BaseController
     error code: 401, desc: 'Unauthorized'
     example "contacts: [{'id':8,'name':'testing'}, {'id':9,'name':'something'}]"
     def index
-        render json: { contacts: ActiveModel::Serializer::CollectionSerializer.new(current_resource_owner.contacts, each_serializer: ContactSerializer) }
+        render json: { contacts: ActiveModel::Serializer::CollectionSerializer.new(current_resource_owner.contacts.order(name: :asc), each_serializer: ContactSerializer) }
     end
 
     api :GET, '/v1/contacts/:id.json?access_token=TOKEN', 'Returns the information about speсific contact of user'
@@ -36,13 +36,13 @@ class Api::V1::ContactsController < Api::V1::BaseController
     error code: 401, desc: 'Unauthorized'
     example "error: 'You have another contact with such email'"
     example "error: 'Incorrect contact data'"
-    example "contact: {'id':8,'name':'testing','phone':'55-55-55','address':'','company':'','birthday':''}"
+    example "contacts: [{'id':8,'name':'testing'}, {'id':9,'name':'something'}]"
     def create
         contact = Contact.new(contacts_params.merge(user: current_resource_owner))
         if contact.save
-            render json: { contact: ContactSerializer.new(contact) }
+            render json: { contacts: ActiveModel::Serializer::CollectionSerializer.new(current_resource_owner.contacts.order(name: :asc), each_serializer: ContactSerializer) }
         else
-            render json: { error: 'Incorrect contact data' }
+            render json: { error: 'Incorrect contact data' }, status: 400
         end
     end
 
