@@ -35,22 +35,56 @@ class ContactInfo extends React.Component {
         this.props.deleteContact();
     }
 
+    _checkWork() {
+        let data;
+        if (this.state.contact.company != '') {
+            data = <p>Work at {this.state.contact.company}</p>;
+        }
+        return data;
+    }
+
+    _checkPhone() {
+        let data;
+        if (this.state.contact.phone != '') {
+            data = <p><img src='assets/icons/phone.png' />{this.state.contact.phone}</p>;
+        }
+        return data;
+    }
+
+    _checkAddress() {
+        let data;
+        if (this.state.contact.address != '') {
+            data = <p><img src='assets/icons/address.png' />{this.state.contact.address}</p>;
+        }
+        return data;
+    }
+
+    _checkBirthday() {
+        return <p><img src='assets/icons/birthday.png' />{this.state.contact.birthday}</p>;
+    }
+
+    _prepareContactInfo() {
+        return (
+            <div className='body'>
+                <p><img src='assets/icons/email.png' />{this.state.contact.email}</p>
+                {this._checkPhone()}
+                {this._checkAddress()}
+                {this._checkBirthday()}
+                <a href='#' onClick={this._handleEditing.bind(this)} className='button'>Edit Contact</a>
+                <a href='#' onClick={this._handleDeleting.bind(this)} className='button'>Delete Contact</a>
+            </div>
+        );
+    }
+
     render () {
+        const body = this._prepareContactInfo();
         return (
             <div className='contact_info'>
                 <div className='header'>
                     <h4>{this.state.contact.name}</h4>
-                    <p>Work in {this.state.contact.company}</p>
+                    {this._checkWork()}
                 </div>
-                <div className='body'>
-                    <p>Email - {this.state.contact.email}</p>
-                    <p>Phone - {this.state.contact.phone}</p>
-                    <p>Address - {this.state.contact.address}</p>
-                    <p>Company - {this.state.contact.company}</p>
-                    <p>Birthday - {this.state.contact.birthday}</p>
-                    <a href='#' onClick={this._handleEditing.bind(this)} className='button'>Edit Contact</a>
-                    <a href='#' onClick={this._handleDeleting.bind(this)} className='button'>Delete Contact</a>
-                </div>
+                {body}
             </div>
         );
     }

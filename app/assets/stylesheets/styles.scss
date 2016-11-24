@@ -108,24 +108,37 @@ body {
             color: #FFF;
             .contact_info {
                 .header {
-                    padding-left: 120px;
+                    padding-left: 0;
                     position: relative;
                     height: 90px;
-                    &:before {
-                        position: absolute;
-                        content: '';
-                        top: 0;
-                        left: 0;
-                        width: 90px;
-                        height: 90px;
-                        background: #5b5f68;
-                        border-radius: 50%;
-                    }
+                    //&:before {
+                        //position: absolute;
+                        //content: '';
+                        //top: 0;
+                        //left: 0;
+                        //width: 90px;
+                        //height: 90px;
+                        //background: #5b5f68;
+                        //border-radius: 50%;
+                    //}
                 }
                 .body {
                     background: #343b43;
                     margin-top: 40px;
                     padding: 20px;
+                    p {
+                        position: relative;
+                        padding-left: 50px;
+                        height: 25px;
+                        color: #02a3fd;
+                        text-shadow: 1px 1px 1px #382310;
+                        img {
+                            position: absolute;
+                            left: 0;
+                            top: 0;
+                            width: 30px;
+                        }
+                    }
                 }
             }
             .contact_welcome {
