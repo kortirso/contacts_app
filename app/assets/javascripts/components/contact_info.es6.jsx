@@ -3,15 +3,14 @@ class ContactInfo extends React.Component {
     constructor(props) {
         super();
         this.state = {
-            contact: {},
-            contact_id: props.contact_id
+            contact: {}
         }
     }
 
-    _fetchContact() {
+    _fetchContact(contact_id) {
         $.ajax({
             method: 'GET',
-            url: `/api/v1/contacts/${this.state.contact_id}.json?access_token=${this.props.token}`,
+            url: `/api/v1/contacts/${contact_id}.json?access_token=${this.props.token}`,
             success: (contact) => {
                 this.setState({contact: contact.contact})
             }
@@ -19,7 +18,11 @@ class ContactInfo extends React.Component {
     }
 
     componentWillMount() {
-        this._fetchContact();
+        this._fetchContact(this.props.contact_id);
+    }
+
+    componentWillReceiveProps(nextProps) {
+        this._fetchContact(nextProps.contact_id);
     }
 
     render () {

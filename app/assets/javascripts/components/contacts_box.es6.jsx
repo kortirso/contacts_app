@@ -14,7 +14,7 @@ class ContactsBox extends React.Component {
     render () {
         let contactInfo;
         if (this.state.contactId > 0) {
-            contactInfo = <ContactInfo token={this.props.token} contact_id={this.state.contactId} key={this.state.contactId} />
+            contactInfo = <ContactInfo token={this.props.token} contact_id={this.state.contactId} />
         }
         else {
             contactInfo = <ContactsWelcome />
