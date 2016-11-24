@@ -30,6 +30,11 @@ class ContactInfo extends React.Component {
         this.props.editContact(this.state.contact);
     }
 
+    _handleDeleting(event) {
+        event.preventDefault();
+        this.props.deleteContact();
+    }
+
     render () {
         return (
             <div className='contact_info'>
@@ -44,6 +49,7 @@ class ContactInfo extends React.Component {
                     <p>Company - {this.state.contact.company}</p>
                     <p>Birthday - {this.state.contact.birthday}</p>
                     <a href='#' onClick={this._handleEditing.bind(this)} className='button'>Edit Contact</a>
+                    <a href='#' onClick={this._handleDeleting.bind(this)} className='button'>Delete Contact</a>
                 </div>
             </div>
         );

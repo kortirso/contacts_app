@@ -1,5 +1,5 @@
 class Api::V1::ContactsController < Api::V1::BaseController
-    before_action :find_contact, only: [:show, :update]
+    before_action :find_contact, only: [:show, :update, :destroy]
     before_action :check_emails, only: [:create, :update]
 
     resource_description do
@@ -65,20 +65,29 @@ class Api::V1::ContactsController < Api::V1::BaseController
         if @contact.update(contacts_params)
             render json: { contacts: ActiveModel::Serializer::CollectionSerializer.new(current_resource_owner.contacts.order(name: :asc), each_serializer: ContactSerializer) }
         else
-            render json: { error: 'Incorrect contact data' }
+            render json: { error: 'Incorrect contact data' }, status: 400
         end
+    end
+
+    api :DELETE, '/v1/contacts/:id.json?access_token=TOKEN', 'Destroy contact'
+    error code: 401, desc: 'Unauthorized'
+    example "error: 'Contact does not exist'"
+    example "contact: {'id':8,'name':'testing','phone':'55-55-55','address':'','company':'','birthday':''}"
+    def destroy
+        @contact.destroy
+        render json: { contacts: ActiveModel::Serializer::CollectionSerializer.new(current_resource_owner.contacts.order(name: :asc), each_serializer: ContactSerializer) }
     end
 
     private
 
     def find_contact
         @contact = current_resource_owner.contacts.find_by(id: params[:id])
-        render json: { error: 'Contact does not exist' } unless @contact
+        render json: { error: 'Contact does not exist' }, status: 400 unless @contact
     end
 
     def check_emails
         unless current_resource_owner.check_contact_email(@contact.nil? ? nil : @contact.id, contacts_params[:email])
-            render json: { error: 'You have another contact with such email' }
+            render json: { error: 'You have another contact with such email' }, status: 400
         end
     end
 

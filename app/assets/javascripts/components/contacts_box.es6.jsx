@@ -25,26 +25,30 @@ class ContactsBox extends React.Component {
     }
 
     _showContact(contactId) {
-        this.setState({contactId: contactId, mode: 'open'});
+        this.setState({mode: 'open', contactId: contactId, contact: []});
     }
 
     _showAddForm() {
-        this.setState({mode: 'add', contactId: 0});
+        this.setState({mode: 'add', contactId: 0, contact: []});
     }
 
     _showEditForm(contact) {
-        this.setState({mode: 'edit', contact: contact, contactId: contact.id});
+        this.setState({mode: 'edit', contactId: contact.id, contact: contact});
     }
 
     _addContact(name, email, phone, address, company, birthday) {
         const contact = {name, email, phone, address, company, birthday};
-        $.post(`/api/v1/contacts.json?access_token=${this.props.token}`, {contact})
-            .success(newContactsList => {
+        $.ajax({
+            method: 'POST',
+            url: `/api/v1/contacts.json?access_token=${this.props.token}`,
+            data: {contact},
+            success: (newContactsList) => {
                 this.setState({contactsList: newContactsList.contacts, contactId: 0, mode: 'open'});
-            })
-            .error( msg => { 
+            },
+            error: (msg) => { 
                 alert('Bad request');
-            });
+            }
+        });
     }
 
     _updateContact(name, email, phone, address, company, birthday) {
@@ -62,11 +66,24 @@ class ContactsBox extends React.Component {
         });
     }
 
+    _deleteContact() {
+        $.ajax({
+            method: 'DELETE',
+            url: `/api/v1/contacts/${this.state.contactId}.json?access_token=${this.props.token}`,
+            success: (newContactsList) => {
+                this.setState({contactsList: newContactsList.contacts, contactId: 0, mode: 'open'});
+            },
+            error: (msg) => { 
+                alert('Bad request');
+            }
+        });
+    }
+
     _prepareRender() {
         let contactInfo;
         if (this.state.mode == 'open') {
             if (this.state.contactId > 0) {
-                contactInfo = <ContactInfo token={this.props.token} contact_id={this.state.contactId} editContact={this._showEditForm.bind(this)} />
+                contactInfo = <ContactInfo token={this.props.token} contact_id={this.state.contactId} editContact={this._showEditForm.bind(this)} deleteContact={this._deleteContact.bind(this)} />
             }
             else {
                 contactInfo = <ContactsWelcome />

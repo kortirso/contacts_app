@@ -40,10 +40,14 @@ describe 'Contacts API' do
                     expect(response).to be_success
                 end
 
-                %w(id name email phone address company birthday).each do |attr|
-                    it "contains #{attr}" do
+                %w(id name email phone address company).each do |attr|
+                    it "and contains #{attr}" do
                         expect(response.body).to be_json_eql(contact.send(attr.to_sym).to_json).at_path("contact/#{attr}")
                     end
+                end
+
+                it 'and contains modified birthday' do
+                    expect(response.body).to be_json_eql(contact.birthday.strftime('%d/%m/%Y').to_json).at_path("contact/birthday")
                 end
             end
 
@@ -82,7 +86,7 @@ describe 'Contacts API' do
                 it 'and renders json with contact hash' do
                     post '/api/v1/contacts', params: { contact: attributes_for(:contact), format: :json, access_token: access_token.token }
 
-                    expect(response.body).to be_json_eql(ContactSerializer.new(Contact.last).serializable_hash.to_json).at_path('contact')
+                    expect(response.body).to be_json_eql(ContactSerializer.new(Contact.last).serializable_hash.to_json).at_path('contacts/0')
                 end
             end
 
@@ -91,10 +95,10 @@ describe 'Contacts API' do
                     expect { post '/api/v1/contacts', params: { contact: attributes_for(:contact, :empty_name), format: :json, access_token: access_token.token } }.to_not change(Contact, :count)
                 end
 
-                it 'and returns 200 status code' do
+                it 'and returns 400 status code' do
                     post '/api/v1/contacts', params: { contact: attributes_for(:contact, :empty_name), format: :json, access_token: access_token.token }
 
-                    expect(response).to be_success
+                    expect(response.status).to eq 400
                 end
 
                 it 'and returns error message' do
@@ -133,7 +137,7 @@ describe 'Contacts API' do
                 end
                 
                 it 'and renders json with contact hash' do
-                    expect(response.body).to be_json_eql(ContactSerializer.new(contact).serializable_hash.to_json).at_path('contact')
+                    expect(response.body).to be_json_eql(ContactSerializer.new(contact).serializable_hash.to_json).at_path('contacts/0')
                 end
             end
 
@@ -145,6 +149,12 @@ describe 'Contacts API' do
                     contact.reload
 
                     expect(contact.name).to eq 'Contact Name'
+                end
+
+                it 'and returns 400 status code' do
+                    patch "/api/v1/contacts/#{contact.id}", params: { contact: attributes_for(:contact, name: ''), format: :json, access_token: access_token.token }
+
+                    expect(response.status).to eq 400
                 end
 
                 it 'returns error message if try access to another user contact or unexisted contact' do
@@ -163,6 +173,43 @@ describe 'Contacts API' do
 
         def do_request(options = {})
             patch "/api/v1/contacts/#{contact.id}", params: { contact: attributes_for(:contact), format: :json }.merge(options)
+        end
+    end
+
+    describe 'DELETE #destroy' do
+        let(:me) { create :user }
+        let!(:contact) { create :contact, user_id: me.id }
+
+        it_behaves_like 'API Authenticable'
+
+        context 'authorized' do
+            let(:access_token) { create :access_token, resource_owner_id: me.id }
+
+            context 'with valid attributes' do
+                it 'returns 200 status' do
+                    delete "/api/v1/contacts/#{contact.id}", params: { format: :json, access_token: access_token.token }
+
+                    expect(response).to be_success
+                end
+
+                it 'and removes contact from DB' do
+                    expect { delete "/api/v1/contacts/#{contact.id}", params: { format: :json, access_token: access_token.token } }.to change(Contact, :count).by(-1)
+                end
+            end
+
+            context 'with invalid attributes' do
+                let!(:another_contact) { create :contact }
+
+                it 'returns error message if try access to another user contact or unexisted contact' do
+                    delete "/api/v1/contacts/#{another_contact.id}", params: { format: :json, access_token: access_token.token }
+
+                    expect(response.body).to eq "{\"error\":\"Contact does not exist\"}"
+                end
+            end
+        end
+
+        def do_request(options = {})
+            get "/api/v1/contacts/#{contact.id}", params: { format: :json }.merge(options)
         end
     end
 end
