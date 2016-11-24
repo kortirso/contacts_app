@@ -9,7 +9,7 @@ class Contacts extends React.Component {
 
     _handleAdding(event) {
         event.preventDefault();
-        this.props.addContact();
+        this.props.newContact();
         this.setState({activeId: 0});
     }
 

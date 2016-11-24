@@ -30,7 +30,7 @@ class ContactAdd extends React.Component {
                             <input id='birthday' type='text' placeholder='Birthday' ref={(input) => this._birthday = input} />
                         </div>
                         <div className='contact_form_actions'>
-                            <button type='submit' className='button'>Add Contact</button>
+                            <button type='submit' className='button'>Save Contact</button>
                         </div>
                     </form>
                 </div>

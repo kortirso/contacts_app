@@ -60,10 +60,10 @@ class Api::V1::ContactsController < Api::V1::BaseController
     error code: 401, desc: 'Unauthorized'
     example "error: 'You have another contact with such email'"
     example "error: 'Incorrect contact data'"
-    example "contact: {'id':8,'name':'testing','phone':'55-55-55','address':'','company':'','birthday':''}"
+    example "contacts: [{'id':8,'name':'testing'}, {'id':9,'name':'something'}]"
     def update
         if @contact.update(contacts_params)
-            render json: { contact: ContactSerializer.new(@contact) }
+            render json: { contacts: ActiveModel::Serializer::CollectionSerializer.new(current_resource_owner.contacts.order(name: :asc), each_serializer: ContactSerializer) }
         else
             render json: { error: 'Incorrect contact data' }
         end
