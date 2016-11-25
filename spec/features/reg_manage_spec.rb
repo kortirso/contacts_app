@@ -14,7 +14,7 @@ RSpec.feature 'Registration management', type: :feature do
                     click_button I18n.t('buttons.signup')
                 end
 
-                expect(page).to have_content I18n.t('buttons.logout')
+                expect(page).to_not have_content I18n.t('auth.reg')
             end
 
             it 'without all information' do
@@ -42,7 +42,7 @@ RSpec.feature 'Registration management', type: :feature do
                     click_button I18n.t('buttons.login')
                 end
 
-                expect(page).to have_content I18n.t('buttons.logout')
+                expect(page).to_not have_content I18n.t('auth.auth')
             end
 
             it 'without some information' do
@@ -66,17 +66,6 @@ RSpec.feature 'Registration management', type: :feature do
 
                 expect(page).to have_content I18n.t('auth.auth')
             end
-        end
-    end
-
-    describe 'Logged user can' do
-        let!(:user) { create(:user) }
-
-        it 'logoff' do
-            sign_in(user)
-            click_on 'destroy'
-
-            expect(page).to have_css ('#signup')
         end
     end
 end

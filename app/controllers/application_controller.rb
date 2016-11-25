@@ -15,4 +15,9 @@ class ApplicationController < ActionController::Base
     def set_locale
         session[:locale] == 'ru' || session[:locale] == 'en' ? I18n.locale = session[:locale] : I18n.locale = http_accept_language.compatible_language_from(I18n.available_locales)
     end
+
+    def after_sign_in_path_for(resource)
+        current_user.create_token
+        root_path
+    end
 end

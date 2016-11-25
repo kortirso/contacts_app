@@ -8,10 +8,4 @@ html lang='en'
         = javascript_include_tag 'application'
         = csrf_meta_tag
     body
-        - if user_signed_in?
-            #contacts_page
-                = render 'shared/left_block'
-                .right_block
-                    == yield
-        - else
-            == yield
+        == yield

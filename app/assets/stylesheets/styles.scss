@@ -43,76 +43,6 @@ body {
     }
 }
 
-#contacts_page {
-    height: 100%;
-    .left_block {
-        border-right: 1px solid #CCC;
-        height: 100%;
-        float: left;
-        width: 25%;
-        header {
-            p, a {
-                margin-bottom: 5px;
-            }
-        }
-        .block {
-            padding: 0 10px;
-            .head {
-                font-weight: 300;
-                margin-bottom: 5px;
-            }
-        }
-        .contacts_block {
-            .contact {
-                margin: 0 -10px 5px;
-                padding: 0 10px;
-                a {
-                    color: #000;
-                }
-            }
-        }
-        overflow: hidden;
-        overflow-y: scroll;
-        &::-webkit-scrollbar {
-            width: 6px;
-        }
-        &::-webkit-scrollbar-track {
-            -webkit-border-radius: 6px;
-            border-radius: 6px;
-        }
-        &::-webkit-scrollbar-thumb {
-            -webkit-border-radius: 6px;
-            border-radius: 6px;
-            background: rgba(217,217,217,0.8);
-            -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-        }
-    }
-    .right_block {
-        position: relative;
-        height: 100%;
-        width: 75%;
-        margin-left: 25%;
-        padding: 10px;
-        &:before, &:after {
-            content: " ";
-            display: table;
-        }
-        &:after {
-            clear: both;
-        }
-    }
-}
-
-#new_contact {
-    .input {
-        margin-bottom: 10px;
-        input {
-            width: 300px;
-            margin: 0;
-        }
-    }
-}
-
 #error {
     position: fixed;
     width: 100%;
@@ -127,4 +57,115 @@ body {
 
 .social {
     width: 26px;
+}
+
+#contacts_app {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: #000;
+    padding: 20px;
+    .contacts_inside > div {
+        height: 100%;
+        > div {
+            height: 100%;
+        }
+    }
+    .contacts_inside {
+        width: 100%;
+        height: 100%;
+        background: #3c434b;
+        box-shadow: inset 0 0 150px #333;
+        .left_side {
+            padding: 0;
+            height: 100%;
+            box-shadow: 1px 0 5px #000;
+            .button {
+                margin: 10px;
+            }
+            .contacts {
+                height: 100%;
+                overflow-y: scroll;
+                &::-webkit-scrollbar {
+                    width: 6px;
+                }
+                &::-webkit-scrollbar-track {
+                    -webkit-border-radius: 6px;
+                    border-radius: 6px;
+                }
+                &::-webkit-scrollbar-thumb {
+                    -webkit-border-radius: 6px;
+                    border-radius: 6px;
+                    background: #2199e8;
+                    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+                }
+                .contact {
+                    padding: 10px 20px;
+                    border-bottom: 1px solid #666;
+                    .name {
+                        color: #FFF;
+                        font-size: 14px;
+                        margin: 0;
+                    }
+                    &:hover {
+                        cursor: pointer;
+                        background: #777;
+                    }
+                    &.active {
+                        background: #0099f1;
+                    }
+                }
+            }
+        }
+        .right_side {
+            padding: 20px;
+            color: #FFF;
+            .contact_info {
+                .header {
+                    padding-left: 0;
+                    position: relative;
+                    height: 50px;
+                    //&:before {
+                        //position: absolute;
+                        //content: '';
+                        //top: 0;
+                        //left: 0;
+                        //width: 90px;
+                        //height: 90px;
+                        //background: #5b5f68;
+                        //border-radius: 50%;
+                    //}
+                }
+                .body {
+                    background: #343b43;
+                    margin-top: 40px;
+                    padding: 20px;
+                    border: 1px solid #FFF;
+                    p {
+                        position: relative;
+                        padding-left: 50px;
+                        height: 25px;
+                        color: #02a3fd;
+                        text-shadow: 1px 1px 1px #382310;
+                        img {
+                            position: absolute;
+                            left: 0;
+                            top: 0;
+                            width: 30px;
+                        }
+                    }
+                }
+            }
+            .contact_welcome {
+
+            }
+            .add_contact {
+                input {
+                    width: 400px;
+                }
+            }
+        }
+    }
 }

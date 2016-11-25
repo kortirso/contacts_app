@@ -17,4 +17,13 @@ class User < ApplicationRecord
         user.identities.create(provider: auth.provider, uid: auth.uid)
         user
     end
+
+    def create_token
+        Doorkeeper::AccessToken.where(resource_owner_id: self.id).destroy_all
+        Doorkeeper::AccessToken.create(application_id: nil, resource_owner_id: self.id, scopes: 'public')
+    end
+
+    def token
+        Doorkeeper::AccessToken.find_by(resource_owner_id: self.id).token
+    end
 end
