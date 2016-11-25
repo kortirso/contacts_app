@@ -44,11 +44,11 @@ class ContactInfo extends React.Component {
     }
 
     _checkPhone() {
-        return <p><img src='assets/icons/phone.png' />{this.state.contact.phone}</p>;
+        return <p className='element phone'>{this.state.contact.phone}</p>;
     }
 
     _checkAddress() {
-        return <p><img src='assets/icons/address.png' />{this.state.contact.address}</p>;
+        return <p className='element address'>{this.state.contact.address}</p>;
     }
 
     _checkBirthday() {
@@ -56,13 +56,13 @@ class ContactInfo extends React.Component {
         if (this.state.contact.years >= 0) {
             years = <span> ({this.state.contact.years} years old)</span>;
         }
-        return <p><img src='assets/icons/birthday.png' />{this.state.contact.birthday}{years}</p>;
+        return <p className='element birthday'>{this.state.contact.birthday}{years}</p>;
     }
 
     _prepareContactInfo() {
         return (
             <div className='body'>
-                <p><img src='assets/icons/email.png' />{this.state.contact.email}</p>
+                <p className='element email'>{this.state.contact.email}</p>
                 {this._checkPhone()}
                 {this._checkAddress()}
                 {this._checkBirthday()}

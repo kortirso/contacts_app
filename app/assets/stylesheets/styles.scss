@@ -20,7 +20,7 @@ body {
         top: 0;
         left: 0;
         z-index: -2;
-        background-image: url('background.jpg');
+        background-image: image-url('background.jpg');
         background-size: cover;
         background-position: center;
         .shadow {
@@ -143,17 +143,35 @@ body {
                     margin-top: 40px;
                     padding: 20px;
                     border: 1px solid #FFF;
-                    p {
+                    .element {
                         position: relative;
                         padding-left: 50px;
                         height: 25px;
                         color: #02a3fd;
                         text-shadow: 1px 1px 1px #382310;
-                        img {
+                        &:before {
                             position: absolute;
+                            content: '';
                             left: 0;
                             top: 0;
                             width: 30px;
+                            height: 30px;
+                        }
+                        &.email:before {
+                            background-image: image-url('icons/email.png');
+                            background-size: 30px 30px;
+                        }
+                        &.phone:before {
+                            background-image: image-url('icons/phone.png');
+                            background-size: 30px 30px;
+                        }
+                        &.address:before {
+                            background-image: image-url('icons/address.png');
+                            background-size: 30px 30px;
+                        }
+                        &.birthday:before {
+                            background-image: image-url('icons/birthday.png');
+                            background-size: 30px 30px;
                         }
                     }
                 }
